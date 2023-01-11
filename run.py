@@ -104,20 +104,7 @@ def get_last_5_entries_sales():
     return columns 
 
 
-def calculate_stock_data(data):
-    """
-    calculate the average stock for each item type, adding 10%
-    """
-    print("Calculating stock data...\n")
-    new_stock_data = []
 
-    for column in data:
-        int_column = [int(num) for num in column]
-        average = sum(int_column)/len(int_column)
-        stock_num = average * 1.1
-        new_stock_data.append(round(stock_num))
-        
-    return new_stock_data
 
 
 
@@ -137,9 +124,99 @@ def main():
 
 
 
-print("Welcome to Love Sandwiches Data Automation")
-main()
+#print("Welcome to Love Sandwiches Data Automation")
+#main()
 
 
 
 
+
+
+
+ 
+
+
+#get_username()
+
+
+
+
+
+def encrypt_name():
+    name = input("What is your name? ")
+    new_name = ""
+    for i in name:
+        new_name += chr(ord(i) + 66)
+        print(new_name)
+
+    return new_name
+
+print(encrypt_name())
+
+
+
+# this code illl use to generate user name
+def name_66():
+    name = input("What is your name? ")
+    new_name66 = name + "66"
+    print(new_name66)
+
+    return new_name66
+
+##print(name_66())
+
+
+#def calorie_intake(weight, age, height):
+    #BMR = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
+    #return BMR
+#weight = float(input("Enter your weight in kg: "))
+#age = int(input("Enter your age in years: "))
+#height = float(input("Enter your height in cm: "))
+#intake = calorie_intake(weight, age, height)
+#print("Your recommended daily calorie intake is: ", intake)
+
+
+
+
+def weight_loss_time(weight, desired_weight, deficit_per_day):
+    weight_loss_rate = weight - desired_weight
+    deficit_needed = weight_loss_rate * 7700
+    days_needed = deficit_needed / deficit_per_day
+    return days_needed
+
+weight = float(input("Enter your current weight in kg: "))
+desired_weight = float(input("Enter your desired weight in kg: "))
+deficit_per_day = int(input("Enter your estimated calorie deficit per day: "))
+time = weight_loss_time(weight, desired_weight, deficit_per_day)
+print(f"It will take approximately {time} days to reach your desired weight")
+
+
+
+def weight_gain_time(weight, height, age, target_weight):
+    # Calculate the user's current BMI
+    bmi = weight / (height ** 2)
+    
+    # Assume a healthy BMI range
+    if bmi < 18.5:
+        print("You are underweight.")
+    elif bmi >= 18.5 and bmi <= 24.9:
+        print("You have a normal weight.")
+    else:
+        print("You are overweight.")
+    
+    # Estimate the number of weeks it will take to reach target weight
+    target_weight_diff = target_weight - weight
+    # 3500 calories in a pound
+    target_calorie_diff = target_weight_diff * 3500
+    # Assume user needs to consume an additional 500 calories per day
+    target_days = target_calorie_diff / 500
+    weeks = target_days / 7
+    
+    return weeks
+
+weight = float(input("What is your weight in pounds? "))
+height = float(input("What is your height in inches? "))
+age = float(input("What is your age in years? "))
+target_weight = float(input("What is your target weight in pounds? "))
+weeks = weight_gain_time(weight, height, age, target_weight)
+print("It will take approximately", weeks, "weeks to reach your target weight.")
