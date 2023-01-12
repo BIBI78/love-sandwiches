@@ -30,7 +30,7 @@ exercise_per_week = exercise_suggestion(age, sex, weight, height, desired_weight
 print("You should exercise approximately {:.2f} hours per week.".format(exercise_per_week))
 
 """
-
+"""
 def diet_suggestion(age, weight, height):
     # Harris-Benedict equation to calculate Basal Metabolic Rate (BMR)
     BMR = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
@@ -51,8 +51,23 @@ height = float(input("Enter your height (in cm): "))
 
 suggested_diet = diet_suggestion(age, weight, height)
 print(suggested_diet)
+"""
 
 
 
+def food_group_suggestion(preference):
+    # Suggest a food group based on user preference
+    if preference == 'vegetarian':
+        food_group_suggestion = 'Plant-based foods'
+    elif preference == 'low-carb':
+        food_group_suggestion = 'Protein and healthy fats'
+    elif preference == 'high-protein':
+        food_group_suggestion = 'Lean meats, eggs, and dairy'
+    else:
+        food_group_suggestion = 'A balanced mix of all food groups'
+    return food_group_suggestion
 
+preference = input("Enter your dietary preference (vegetarian, low-carb, high-protein, or none): ")
 
+suggested_food_group = food_group_suggestion(preference)
+print("Your suggested food group is: {}.".format(suggested_food_group))
