@@ -165,3 +165,22 @@ def choose_weight_goal():
         
 
 
+#########
+def calorie_intake(weight, height, age, desired_weight):
+    # Harris-Benedict equation to calculate Basal Metabolic Rate (BMR)
+    BMR = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
+    # Multiply BMR by 1.55 to estimate calorie intake needed to gain weight
+    calorie_intake = BMR * 1.55
+    time_to_reach_desired_weight = (desired_weight - weight) / 0.5
+    return calorie_intake, time_to_reach_desired_weight
+
+weight = float(input("Enter your current weight (in kg): "))
+height = float(input("Enter your height (in cm): "))
+age = int(input("Enter your age: "))
+desired_weight = float(input("Enter your desired weight (in kg): "))
+
+
+calories_per_day, time_to_reach_desired_weight = calorie_intake(weight, height, age, desired_weight)
+
+calories_per_day = calorie_intake(weight, height, age, desired_weight)
+print("To gain weight, you should consume approximately", calories_per_day, "calories per day.")
