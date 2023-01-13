@@ -54,7 +54,7 @@ print(suggested_diet)
 """
 
 
-
+"""
 def food_group_suggestion(preference):
     # Suggest a food group based on user preference
     if preference == 'vegetarian':
@@ -71,3 +71,34 @@ preference = input("Enter your dietary preference (vegetarian, low-carb, high-pr
 
 suggested_food_group = food_group_suggestion(preference)
 print("Your suggested food group is: {}.".format(suggested_food_group))
+"""
+
+
+# ok the first part works but i would like the FOOD group suggestion part to work too,
+# nested if statement ??
+def ask_question(question, valid_responses):
+    while True:
+        response = input(question)
+        if response in valid_responses:
+            if response == 'veg':
+                food_group_suggestion = 'Plant-based foods'
+            elif response == 'protein':
+                food_group_suggestion = 'eggs , lean meat, dairy'
+            elif response == 'carb':
+                food_group_suggestion = 'Protein and healthy fats'
+            elif response == 'none':
+                food_group_suggestion = 'A balanced mix of all food groups'
+            return response
+        else:
+            print("Invalid response, please enter one of the following: {}".format(valid_responses))
+
+question = "Enter your dietary preference (vegetarian, low-carb, high-protein, or none): "
+valid_responses = ["a", "b", "c", "d"]
+
+#suggested_food_group = food_group_suggestion(response)
+answer = ask_question(question, valid_responses)
+print("Your answer is: {}".format(answer))
+
+
+
+
