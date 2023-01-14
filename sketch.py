@@ -2,6 +2,9 @@ import gspread
 from google.oauth2.service_account import Credentials
 from pprint import pprint
 
+## JSAIS PAS ##
+import requests
+import json
 
 """
 ### edit this### this is the exercise function 
@@ -72,8 +75,8 @@ preference = input("Enter your dietary preference (vegetarian, low-carb, high-pr
 suggested_food_group = food_group_suggestion(preference)
 print("Your suggested food group is: {}.".format(suggested_food_group))
 """
-
-
+"""
+### THIS IS THE DIET CODE ###
 # ok the first part works but i would like the FOOD group suggestion part to work too,
 # nested if statement ??
 def ask_question(question, valid_responses):
@@ -99,6 +102,60 @@ valid_responses = ["a", "b", "c", "d"]
 answer = ask_question(question, valid_responses)
 print("Your answer is: {}".format(answer))
 
+"""
 
 
 
+
+## neeed an api key ##
+def get_weather(api_key, city_name):
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={api_key}&units=metric"
+    response = requests.get(url)
+    weather_data = json.loads(response.text)
+    if 'cod' not in weather_data or weather_data['cod'] != 200:
+        return None
+    else:
+        return weather_data
+
+api_key = "YOUR_API_KEY"
+city_name = "london"
+weather = get_weather(api_key, city_name)
+
+if weather is None:
+    print("Unable to get the weather for the given city")
+else:
+    print("Temperature in {} is {} degree celcius".format(city_name, weather['main']['temp']))
+
+
+
+
+    ####
+
+     #3
+
+# ok the first part works but i would like the FOOD group suggestion part to work too,
+# nested if statement ??
+def ask_question(question, valid_responses):
+    while True:
+        response = input(question)
+        if response in valid_responses:
+            if response == 'a':
+                food_group_suggestion = 'Plant-based foods'
+            elif response == 'protein':
+                food_group_suggestion = 'eggs , lean meat, dairy'
+            elif response == 'carb':
+                food_group_suggestion = 'Protein and healthy fats'
+            elif response == 'none':
+                food_group_suggestion = 'A balanced mix of all food groups'
+            return response
+        else:
+            print("Invalid response, please enter one of the following: {}".format(valid_responses))
+
+question = "Enter your dietary preference (vegetarian, low-carb, high-protein, or none): "
+valid_responses = ["a", "b", "c", "d"]
+
+#suggested_food_group = food_group_suggestion(response)
+answer = ask_question(question, valid_responses)
+print("Your answer is: {}".format(answer))
+
+####
