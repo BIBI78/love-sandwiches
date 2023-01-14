@@ -130,7 +130,7 @@ print("It will take approximately {} weeks to reach your desired weight.".format
 
 
  #3
-
+"""
 # ok the first part works but i would like the FOOD group suggestion part to work too,
 # nested if statement ??
 def ask_question(question, valid_responses):
@@ -154,10 +154,34 @@ valid_responses = ["a", "b", "c", "d"]
 
 #suggested_food_group = food_group_suggestion(response)
 answer = ask_question(question, valid_responses)
+# delete this
 print("Your answer is: {}".format(answer))
 
 
+"""
 
+
+def weight_change():
+    while True:
+        weight_change = input("Would you like to lose or gain weight? (lose or gain): ")
+        if weight_change == "lose":
+            lose_weight()
+            break
+        elif weight_change == "gain":
+            gain_weight()
+            break
+        else:
+            print("Invalid response, please enter either 'lose' or 'gain'")
+
+def lose_weight():
+    # code to calculate weight loss
+    print("You are in weight loss function")
+
+def gain_weight():
+    # code to calculate weight gain
+    print("You are in weight gain function")
+
+weight_change()
  
 
 
@@ -167,3 +191,5 @@ print("Your answer is: {}".format(answer))
 
 main()
 
+
+    
