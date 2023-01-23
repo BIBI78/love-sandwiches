@@ -236,5 +236,40 @@ def workout_schedule():
 
 
 
-workout_schedule()
+#workout_schedule()
 
+# NOTE #
+# need to add somehting that qhen the user inputs a value not in the lost nof values #
+
+
+# try dis #
+
+def workout_schedule():
+    valid_exercise_types = ["cardio", "strength", "yoga"]
+    valid_days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    #Ask user for types of exercises they like
+    exercise_types = input("What types of exercises do you like? (e.g. cardio, strength, yoga) ")
+    while exercise_types.lower() not in valid_exercise_types:
+        print("Invalid input, Please choose from: cardio, strength, yoga")
+        exercise_types = input("What types of exercises do you like? (e.g. cardio, strength, yoga) ")
+    #Ask user for how many days they would like to work out
+    workout_days = int(input("How many days per week would you like to work out? "))
+    #Ask user for their current weight
+    current_weight = float(input("What is your current weight in kg? "))
+    #Ask user for their desired weight
+    desired_weight = float(input("What is your desired weight in kg? "))
+    #Calculate calorie deficit needed per day to reach desired weight
+    calorie_deficit = (current_weight - desired_weight) * 7700
+    #Create empty dictionary for workout schedule
+    schedule = {"Monday": [], "Tuesday": [], "Wednesday": [], "Thursday": [], "Friday": [], "Saturday": [], "Sunday": []}
+    #Populate workout schedule with exercise types
+    for i in range(workout_days):
+        day = input(f"Which day do you want to work out? (e.g. Monday) ")
+        while day.capitalize() not in valid_days:
+            print("Invalid input, Please choose from: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday")
+            day = input(f"Which day do you want to work out? (e.g. Monday) ")
+        schedule[day.capitalize()].append(exercise_types)
+    # Print the
+
+
+workout_schedule()
