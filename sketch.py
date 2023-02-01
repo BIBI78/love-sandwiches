@@ -274,10 +274,10 @@ def workout_schedule():
 #main()
 #workout_schedule()
 
-
+#ok i need to find a way to make this work# 
 def weekly_schedule():
   # List of exercise options
-  exercise_options = ["running", "weightlifting", "yoga", "swimming", "cycling"]
+  exercise_options = ["running", "weightlifting", "yoga", "swimming", "cycling", "boxing"]
   print(exercise_options)
   # Ask user for favorite exercises
   print("What type of exercise do you like to do? (Choose one or more, separate each option with a comma)")
