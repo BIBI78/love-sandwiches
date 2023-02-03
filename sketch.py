@@ -150,10 +150,7 @@ def validate_data(values):
 
 
 
-def main ():
-    draw_jolly_roger()
-    weight_change()
-    #stored_user_data()
+
 
             
    
@@ -335,4 +332,13 @@ def weekly_schedule():
   print("\nIt will take you approximately {:.1f} weeks to reach your desired weight.".format(time_to_reach_goal / 7))
 
 
-weekly_schedule()
+def main ():
+    draw_jolly_roger()
+    weight_change()
+    #stored_user_data() does not work ?
+
+#main()
+#weekly_schedule()
+
+#workout_schedule()
+weight_change()
