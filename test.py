@@ -113,31 +113,8 @@ def ask_sports_likes():
 
 #ask_sports_likes()
 
-def workout_options():
-    options = ['Weight lifting','Running','Yoga', 'Dance','Martial Arts']
-    print("Please choose from the following list")
-    for option in options:
-        print(option)
-
-    user_workouts = []
-    while True:
-      choice = input("Choose from this list, you can choose multiple: ").strip()
-      if choice not in options:
-        print("Didnt quite get that please select from the given options again.")
-      else:
-        user_workouts.append(choice)
-        more = input("Do you like any more sports? (yes/no)").strip()
-        if more.lower() == 'no':
-            break
-        elif more.lower() != 'yes':
-            print("Invalid response. Please answer yes or no.")
 
 
-      #print(user_workouts)
-      return user_workouts
-
-workout_options()
-#ask_sports_likes()
 
 
 def available_user_workouts():
@@ -148,18 +125,19 @@ def available_user_workouts():
     
     likes = []
     while True:
-        choice = input("Which sports do you like to play? You can choose multiple: ").strip()
+        choice = input("Which sports do you like to play? You can choose multiple: ").strip().capitalize()
         if choice not in options:
             print("Invalid choice. Please select from the given options.")
         else:
             likes.append(choice)
-            more = input("Do you like any more sports? (yes/no)").strip()
+            more = input("Do you like any more sports? (yes/no)").strip().capitalize()
             if more.lower() == 'no':
                 break
             elif more.lower() != 'yes':
                 print("Invalid response. Please answer yes or no.")
     
-    #print(likes)
+    
+    print(likes)
     return likes
 
 available_user_workouts()
