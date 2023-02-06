@@ -1,11 +1,8 @@
 import gspread
 from google.oauth2.service_account import Credentials
 from pprint import pprint
-
-## JSAIS PAS ##
 import requests
 import json
-
 import gspread
 from google.oauth2.service_account import Credentials
 from pprint import pprint
@@ -88,3 +85,4 @@ def weekly_schedule():
 
 
 weekly_schedule()
+

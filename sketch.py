@@ -338,7 +338,7 @@ def main ():
     #stored_user_data() does not work ?
 
 #main()
-#weekly_schedule()
+weekly_schedule()
 
 #workout_schedule()
-weight_change()
+#weight_change()
