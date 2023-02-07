@@ -130,7 +130,7 @@ def available_user_workouts():
             print("Invalid choice. Please select from the given options.")
         else:
             likes.append(choice)
-            more = input("Do you like any more sports? (yes/no)").strip().capitalize()
+            more = input("what other sports do you like? none? (yes/no)").strip().capitalize()
             if more.lower() == 'no':
                 break
             elif more.lower() != 'yes':
@@ -140,4 +140,36 @@ def available_user_workouts():
     print(likes)
     return likes
 
-available_user_workouts()
+#available_user_workouts()
+# need to make thos function more fluid ^^^#
+"""
+def gather_info():
+  name = input("What's your name? ")
+  age = int(input("What's your age? "))
+  return (name, age)
+
+def print_info(info):
+  name, age = info
+  print(f"Your name is {name} and you're {age} years old.")
+
+info = gather_info()
+print_info(info)
+
+"""
+
+# remake of the info function
+
+def user_info():
+  name = input("What's your name? ")
+  age = int(input("What's your age? "))
+  weight = int(input("What's your curent weight in kg?? "))
+  desired_weight = int(input("What's your desired weight in kg? "))
+  return(name,age,weight,desired_weight)
+
+
+def print_user_info(info):
+  name, age, weight,desired_weight = info
+  print(f"Your name is {name} and you're {age} years old. and your current weight is {weight} years old.and your desired weight is {desired_weight} .")
+
+info = user_info()
+print_user_info(info)
