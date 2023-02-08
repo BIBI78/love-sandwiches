@@ -63,7 +63,7 @@ def weight_loss_time(weight, desired_weight,age,height):
     recomended_deficit = (10*(weight) + 6.25*(height) -(5*age)+5)
     deficit_needed = recomended_deficit
     #user_data = (weight,height,age,desired_weight)
-    return days_needed 
+    return days_needed
 #2
 
 def weight_gain_time(weight, height, age, desired_weight):

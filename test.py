@@ -24,7 +24,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('1000_sunny_fitness')
 
-
+# this part ask user what sports they like then generates a random schedule and calulate users weight and shit #
 
 def weekly_schedule():
   
@@ -86,32 +86,11 @@ def weekly_schedule():
   print("\nIt will take you approximately {:.1f} weeks to reach your desired weight.".format(time_to_reach_goal / 7))
 
 
-#weekly_schedule()
-
-def ask_sports_likes():
-    sports = ['Soccer', 'Basketball', 'Tennis', 'Volleyball', 'Baseball']
-    print("Here are some sports you can choose from:")
-    for sport in sports:
-        print(sport)
-    
-    likes = []
-    while True:
-        choice = input("Which sports do you like to play? You can choose multiple: ").strip()
-        if choice not in sports:
-            print("Invalid choice. Please select from the given options.")
-        else:
-            likes.append(choice)
-            more = input("Do you like any more sports? (yes/no)").strip()
-            if more.lower() == 'no':
-                break
-            elif more.lower() != 'yes':
-                print("Invalid response. Please answer yes or no.")
-    
-    #print(likes)
-    return likes
+weekly_schedule()
 
 
-#ask_sports_likes()
+
+
 
 
 
@@ -142,22 +121,9 @@ def available_user_workouts():
 
 #available_user_workouts()
 # need to make thos function more fluid ^^^#
-"""
-def gather_info():
-  name = input("What's your name? ")
-  age = int(input("What's your age? "))
-  return (name, age)
 
-def print_info(info):
-  name, age = info
-  print(f"Your name is {name} and you're {age} years old.")
 
-info = gather_info()
-print_info(info)
-
-"""
-
-# remake of the info function
+# USER INFO function
 
 def user_info():
   name = input("What's your name? ")
@@ -171,5 +137,5 @@ def print_user_info(info):
   name, age, weight,desired_weight = info
   print(f"Your name is {name} and you're {age} years old. and your current weight is {weight} years old.and your desired weight is {desired_weight} .")
 
-info = user_info()
-print_user_info(info)
+#info = user_info()
+#print_user_info(info)
