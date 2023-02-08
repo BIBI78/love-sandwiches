@@ -68,6 +68,7 @@ def print_user_weight_loss_info(info):
     recomended_deficit = (10*(weight) + 6.25*(height) -(5*age)+5)
     deficit_needed = recomended_deficit
     print(f"Your the recommened deficit is {recomended_deficit} ")
+    print(f"Your the recommened deficit per day is {deficit_per_day} ")
  
 
 #user_info()
