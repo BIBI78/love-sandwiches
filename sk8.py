@@ -108,8 +108,9 @@ def weight_change():
             print("Invalid response, please enter either 'lose' or 'gain'")
 
 def main():
-    weight_change()
+    #weight_change()
+    info = user_info()
     print_user_weight_loss_info(info)
-#info = user_info()
+    
 main()
 

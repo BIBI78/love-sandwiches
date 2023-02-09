@@ -33,19 +33,24 @@ def weight_loss_time(weight, desired_weight,age,height):
     recomended_deficit = (10*(weight) + 6.25*(height) -(5*age)+5)
     deficit_needed = recomended_deficit
     #user_data = (weight,height,age,desired_weight)
-    return days_needed 
+    return days_needed , (name, age)
 
+def weight_gain_time(weight, height, age, desired_weight):
+    BMR = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
+    weight_gain_time = BMR * 1.55
+    time_to_reach_desired_weight = (desired_weight - weight) / 0.5
+    return weight_gain_time, time_to_reach_desired_weight
 
 def weight_change():
+    weight_change = input("WELCOME TO 1000 SUNNY FITNESS \n Would you like to lose or gain weight? (lose or gain): \n")
     name = input("What's your name? \n")
     age = int(input("Enter your age: \n "))
     height = float(input("Enter your height (in cm): \n"))
     weight = float(input("Enter your current weight in kg:\n "))
     desired_weight = float(input("Enter your desired weight in kg: \n"))
 
-
     while True:
-        weight_change = input("WELCOME TO 1000 SUNNY FITNESS \n Would you like to lose or gain weight? (lose or gain): \n")
+        
         if weight_change == "lose":
             recomended_deficit = (10*(weight) + 6.25*(height) -(5*age)+5)
             time = weight_loss_time(weight, desired_weight,age,height)
@@ -55,11 +60,6 @@ def weight_change():
             user_data = (weight,height,age,desired_weight)
             break
         elif weight_change == "gain":
-            print("Please answer the following questions\n")
-            weight = float(input("Enter your current weight (in kg): \n"))
-            height = float(input("Enter your height (in cm): \n"))
-            age = int(input("Enter your age: "))
-            desired_weight = float(input("Enter the weight youd like to build up to (in kg): \n"))
             calories_per_day, time_to_reach_desired_weight = weight_gain_time(weight, height, age, desired_weight)
             print("To gain this weight, you should eat about", ceil(calories_per_day), "calories per day.")
             print("and will take approximately {} weeks to reach your desired weight.".format(time_to_reach_desired_weight))
@@ -71,9 +71,22 @@ def weight_change():
 
 
 
-def main():
-    weight_change()
+def print_info(info):
+  name, age,desired_weight,height = info
+  print(f"Your name is {name} and you're {age} years old.")
 
+
+
+
+# IM TRYIMG TO GET THE VALUES THAT ARE CALCULATED IN THE FUNCTION OUT , SO I CAN MANIPULATE THEM #
+def main():
+    name = input("What's your name? \n")
+    age = int(input("Enter your age: \n "))
+    weight_change()
+    #print(f" {name} and you're {age} years old.")
+   
+    info = weight_loss_time(weight, desired_weight, age, height)
+    print_info(info)
 
 
 main()
