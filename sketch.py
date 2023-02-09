@@ -86,7 +86,6 @@ def weight_change():
             weight = float(input("Enter your current weight in kg:\n "))
             height = float(input("Enter your height (in cm): \n"))
             age = int(input("Enter your age: "))
-            desired_weight = float(input("Enter your desired weight in kg: \n"))
             recomended_deficit = (10*(weight) + 6.25*(height) -(5*age)+5)
             time = weight_loss_time(weight, desired_weight,age,height)
             print(f"You should eat about  {recomended_deficit} calories per day for about {time} days")
@@ -338,7 +337,7 @@ def main ():
     #stored_user_data() does not work ?
 
 #main()
-weekly_schedule()
+#weekly_schedule()
 
 #workout_schedule()
-#weight_change()
+weight_change()
