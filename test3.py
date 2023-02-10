@@ -23,7 +23,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('1000_sunny_fitness')
 
 
-
+#
 def weight_loss_time(weight, desired_weight,age,height):
     weight_loss_rate = weight - desired_weight
     deficit_needed = weight_loss_rate * 7700
@@ -33,14 +33,14 @@ def weight_loss_time(weight, desired_weight,age,height):
     recomended_deficit = (10*(weight) + 6.25*(height) -(5*age)+5)
     deficit_needed = recomended_deficit
     #user_data = (weight,height,age,desired_weight)
-    return days_needed , (name, age)
-
+    return days_needed ,
+#
 def weight_gain_time(weight, height, age, desired_weight):
     BMR = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
     weight_gain_time = BMR * 1.55
     time_to_reach_desired_weight = (desired_weight - weight) / 0.5
     return weight_gain_time, time_to_reach_desired_weight
-
+#
 def weight_change():
     weight_change = input("WELCOME TO 1000 SUNNY FITNESS \n Would you like to lose or gain weight? (lose or gain): \n")
     name = input("What's your name? \n")
@@ -80,13 +80,15 @@ def print_info(info):
 
 # IM TRYIMG TO GET THE VALUES THAT ARE CALCULATED IN THE FUNCTION OUT , SO I CAN MANIPULATE THEM #
 def main():
-    name = input("What's your name? \n")
-    age = int(input("Enter your age: \n "))
+    #name = input("What's your name? \n")
+    #age = int(input("Enter your age: \n "))
     weight_change()
-    #print(f" {name} and you're {age} years old.")
    
-    info = weight_loss_time(weight, desired_weight, age, height)
-    print_info(info)
+   
+    #info = weight_loss_time(weight, desired_weight, age, height)
+    #print_info(info)
 
 
 main()
+info = weight_loss_time(weight, desired_weight, age, height)
+print_info(info)
