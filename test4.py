@@ -68,6 +68,10 @@ def main():
     weight, age, height, desired_weight, weight_change = get_user_data()
     
     time_in_weeks = calculate_weight_change_time(weight, age, height, desired_weight, weight_change)
+    calories_per_day = calculate_weight_change_time(weight, age, height, desired_weight, weight_change)
+
+    ## all this is for weight loss calculations ##
+    ## this is stupid bcause it seems like im rewriting my code again outside the function i already defined##
     weight_loss_rate = weight - desired_weight 
     deficit_per_day = (10*(weight) + 6.25*(height) -(5*age)+5)
     deficit_needed = weight_loss_rate * 7700
@@ -76,7 +80,7 @@ def main():
     if weight_change == "gain":
         print("it will take you", time_in_weeks,"weeks to gain", desired_weight - weight, "kg of weight.")
     elif weight_change == "lose":
-        print("you should eat", time_in_weeks,"for" , days_needed, "days to lose", weight - desired_weight, "kg of weight.")
+        print("you should eat", calories_per_day,"for" , days_needed, "days to lose", weight - desired_weight, "kg of weight.")
 
 if __name__ == "__main__":
     main()
