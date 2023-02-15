@@ -30,25 +30,26 @@ def get_user_data():
     height = float(input("Enter your height (in cm): "))
     weight = float(input("Enter your current weight (in kg): "))
     desired_weight = float(input("Enter your desired weight (in kg): "))
-    weight_change = input("Do you want to gain weight or lose weight? (Enter 'Gain' or 'Lose'): ")
+    weight_change = input("Do you want to gain weight or lose weight? (Enter gain or lose'): ")
     
     return weight, age, height, desired_weight, weight_change
 
 def calculate_weight_change_time(weight, age, height, desired_weight, weight_change):
     weight_difference = desired_weight - weight
     time_in_weeks = 0
-    if weight_change == "Gain":
+    if weight_change == "gain":
          BMR = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
          weight_gain_time = BMR * 1.55
          time_to_reach_desired_weight = (desired_weight - weight) / 0.5
          time_needed = (desired_weight - weight) / 0.5
-    elif weight_change == "Lose":
+    elif weight_change == "lose":
         weight_loss_rate = weight - desired_weight
         deficit_needed = weight_loss_rate * 7700
         recomended_deficit = (10*(weight) + 6.25*(height) -(5*age)+5)
         deficit_per_day = recomended_deficit 
         days_needed = deficit_needed / deficit_per_day
         recomended_deficit = (10*(weight) + 6.25*(height) -(5*age)+5)
+        time = weight_loss_time(weight, desired_weight,age,height)
         deficit_needed = recomended_deficit
         time_needed = recomended_deficit
     return time_needed
@@ -56,9 +57,9 @@ def calculate_weight_change_time(weight, age, height, desired_weight, weight_cha
 def main():
     weight, age, height, desired_weight, weight_change = get_user_data()
     time_in_weeks = calculate_weight_change_time(weight, age, height, desired_weight, weight_change)
-    if weight_change == "Gain":
-        print("It will take approximately", time_in_weeks, "weeks to gain", desired_weight - weight, "kg of weight.")
-    elif weight_change == "Lose":
+    if weight_change == "gain":
+        print("You should eat", time_in_weeks,"a day for cweeks to gain", desired_weight - weight, "kg of weight.")
+    elif weight_change == "lose":
         print("It will take approximately", time_in_weeks, "weeks to lose", weight - desired_weight, "kg of weight.")
 
 if __name__ == "__main__":
