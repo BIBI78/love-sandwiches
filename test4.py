@@ -33,6 +33,28 @@ def weight_loss_time(weight, desired_weight,age,height):
     #user_data = (weight,height,age,desired_weight)
     return days_needed 
 
+
+def weight_gain_time(weight, height, age, desired_weight):
+    """
+    calculates ursers weigh gain projection
+    """
+    # this is the bmr for weight loss 
+    BMR = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
+    weight_gain_time = BMR * 1.55
+    time_to_reach_desired_weight = (desired_weight - weight) / 0.5
+    #user_data = (weight,height,age,desired_weight)
+    return weight_gain_time, time_to_reach_desired_weight
+#### TEST #####
+
+def calculate_calories_to_gain_weight(weight_gain_kg):
+    BMR = 10 * weight_gain_kg + 6.25 * 170 - 5 * 25 + 5 # replace 170 and 25 with user's height and age respectively
+    calories = BMR * 1.2 # assuming a sedentary lifestyle
+    return calories
+weight_gain_kg = 5 # replace with the amount of weight the user wants to gain in kg
+calories = calculate_calories_to_gain_weight(weight_gain_kg)
+#print("To gain", weight_gain_kg, "kg of weight, you need to consume", calories, "calories per day.")
+#### TEST ####
+
 ## OK NOW I EDIT##
 def get_user_data():
     print("Please answer the following questions\n")
@@ -59,15 +81,17 @@ def calculate_weight_change_time(weight, age, height, desired_weight, weight_cha
         deficit_per_day = recomended_deficit 
         days_needed = deficit_needed / deficit_per_day
         recomended_deficit = (10*(weight) + 6.25*(height) -(5*age)+5)
-        #days need#
+        #days needed#
         deficit_needed = recomended_deficit
         time_needed = recomended_deficit
     return time_needed
 
 def main():
     weight, age, height, desired_weight, weight_change = get_user_data()
-    
+    # this is so weird , for gain it calculate weeks , for loss it calculates calories???""##
+    #   YES THATS EXACTLY WHAT IS GOING ON#
     time_in_weeks = calculate_weight_change_time(weight, age, height, desired_weight, weight_change)
+
     calories_per_day = calculate_weight_change_time(weight, age, height, desired_weight, weight_change)
 
     ## all this is for weight loss calculations ##
@@ -76,11 +100,14 @@ def main():
     deficit_per_day = (10*(weight) + 6.25*(height) -(5*age)+5)
     deficit_needed = weight_loss_rate * 7700
     days_needed = deficit_needed / deficit_per_day
+    ###
+    BMR = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
+    calories_up_per_day = (BMR*1.2) * (weight - desired_weight )
 
     if weight_change == "gain":
-        print("it will take you", time_in_weeks,"weeks to gain", desired_weight - weight, "kg of weight.")
+        print("if you eat CALORIES a day ",calories_up_per_day, "it will take you", time_in_weeks,"weeks to gain", desired_weight - weight, "kg of weight.")
     elif weight_change == "lose":
-        print("you should eat", calories_per_day,"for" , days_needed, "days to lose", weight - desired_weight, "kg of weight.")
+        print("you should eat", calories_per_day,"calories for" , days_needed, "days to lose", weight - desired_weight, "kg of weight.")
 
 if __name__ == "__main__":
     main()
