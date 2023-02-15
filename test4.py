@@ -22,6 +22,16 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('1000_sunny_fitness')
 
+def weight_loss_time(weight, desired_weight,age,height):
+    weight_loss_rate = weight - desired_weight
+    deficit_needed = weight_loss_rate * 7700
+    recomended_deficit = (10*(weight) + 6.25*(height) -(5*age)+5)
+    deficit_per_day = recomended_deficit 
+    days_needed = deficit_needed / deficit_per_day
+    recomended_deficit = (10*(weight) + 6.25*(height) -(5*age)+5)
+    deficit_needed = recomended_deficit
+    #user_data = (weight,height,age,desired_weight)
+    return days_needed 
 
 ## OK NOW I EDIT##
 def get_user_data():
@@ -49,18 +59,24 @@ def calculate_weight_change_time(weight, age, height, desired_weight, weight_cha
         deficit_per_day = recomended_deficit 
         days_needed = deficit_needed / deficit_per_day
         recomended_deficit = (10*(weight) + 6.25*(height) -(5*age)+5)
-        time = weight_loss_time(weight, desired_weight,age,height)
+        #days need#
         deficit_needed = recomended_deficit
         time_needed = recomended_deficit
     return time_needed
 
 def main():
     weight, age, height, desired_weight, weight_change = get_user_data()
+    
     time_in_weeks = calculate_weight_change_time(weight, age, height, desired_weight, weight_change)
+    weight_loss_rate = weight - desired_weight 
+    deficit_per_day = (10*(weight) + 6.25*(height) -(5*age)+5)
+    deficit_needed = weight_loss_rate * 7700
+    days_needed = deficit_needed / deficit_per_day
+
     if weight_change == "gain":
-        print("You should eat", time_in_weeks,"a day for cweeks to gain", desired_weight - weight, "kg of weight.")
+        print("it will take you", time_in_weeks,"weeks to gain", desired_weight - weight, "kg of weight.")
     elif weight_change == "lose":
-        print("It will take approximately", time_in_weeks, "weeks to lose", weight - desired_weight, "kg of weight.")
+        print("you should eat", time_in_weeks,"for" , days_needed, "days to lose", weight - desired_weight, "kg of weight.")
 
 if __name__ == "__main__":
     main()
