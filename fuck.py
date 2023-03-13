@@ -3,12 +3,7 @@ from google.oauth2.service_account import Credentials
 from pprint import pprint
 import requests
 import json
-import gspread
-from google.oauth2.service_account import Credentials
-from pprint import pprint
 from math import ceil
-
-
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -23,66 +18,70 @@ SHEET = GSPREAD_CLIENT.open('1000_sunny_fitness')
 
 
 
-#ok i need to find a way to make this work# 
-def weekly_schedule():
-  # List of exercise options
-  exercise_options = ["running", "weightlifting", "yoga", "swimming", "cycling", "boxing"]
-  print(exercise_options)
-  # Ask user for favorite exercises
-  print("What type of exercise do you like to do? (Choose one or more, separate each option with a comma)")
-  user_exercise = input().strip().split(",")
-  
-  # Validate user's exercise choices
-  for ex in user_exercise:
-    if ex.strip() not in exercise_options:
-      print("Invalid option. Please choose from the following:", exercise_options)
-      return weekly_schedule()
-  
-  # Ask user for number of days they want to workout
-  print("How many days per week would you like to work out?")
-  user_days = input().strip()
-  try:
-    user_days = int(user_days)
-  except ValueError:
-    print("Invalid input. Please enter a number.")
-    return weekly_schedule()
-  
-  # Ask user for current weight
-  print("What is your current weight (in kg)?")
-  user_weight = input().strip()
-  try:
-    user_weight = float(user_weight)
-  except ValueError:
-    print("Invalid input. Please enter a number.")
-    return weekly_schedule()
-  
-  # Ask user for desired weight
-  print("What is your desired weight (in kg)?")
-  user_desired_weight = input().strip()
-  try:
-    user_desired_weight = float(user_desired_weight)
-  except ValueError:
-    print("Invalid input. Please enter a number.")
-    return weekly_schedule()
-  
-  # Generate a random weekly schedule
-  import random
-  days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-  random.shuffle(days)
-  schedule = []
-  for i in range(user_days):
-    schedule.append((days[i], random.choice(user_exercise)))
-  
-  # Print weekly schedule
-  print("\nHere is your weekly schedule:")
-  for day, ex in schedule:
-    print(day, "-", ex)
-  
-  # Calculate estimated time to reach desired weight
-  weight_diff = user_desired_weight - user_weight
-  time_to_reach_goal = weight_diff * 1000 / 500 # assuming 500 g weight loss per week
-  print("\nIt will take you approximately {:.1f} weeks to reach your desired weight.".format(time_to_reach_goal / 7))
+import random
+import time
+
+def workout_schedule():
+    exercises = ['cardio', 'weight lifting', 'home exercise']
+    options = {
+        'cardio': ['treadmill', 'elliptical', 'stairmaster'],
+        'weight lifting': ['bench press', 'squat', 'deadlift'],
+        'home exercise': ['push-ups', 'crunches', 'lunges']
+    }
+    days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    
+    # Prompt user for exercise type
+    while True:
+        exercise_choice = input(f"What type of exercise would you like to do? (Choose multiple): {exercises} ")
+        chosen_exercises = [e.strip() for e in exercise_choice.split(",")]
+        if all(e in exercises for e in chosen_exercises):
+            break
+        print("Invalid input, please choose again.")
+    
+    # Prompt user for exercise options
+    chosen_options = []
+    for exercise in chosen_exercises:
+        while True:
+            option_choice = input(f"What {exercise} exercise would you like to do? {options[exercise]} ")
+            if option_choice in options[exercise]:
+                chosen_options.append(option_choice)
+                break
+            print("Invalid input, please choose again.")
+    
+    # Prompt user for number of days per week
+    while True:
+        try:
+            num_days = int(input("How many days per week would you like to work out? "))
+            if num_days < 1 or num_days > 7:
+                raise ValueError
+            break
+        except ValueError:
+            print("Invalid input, please enter a number between 1 and 7.")
+    
+    # Create workout schedule
+    schedule = {}
+    for day in days:
+        schedule[day] = []
+    for i in range(num_days):
+        while True:
+            day_choice = input(f"Enter day {i+1} of your workout schedule (e.g. Monday): ")
+            if day_choice in days:
+                if chosen_options:
+                    exercise_choice = random.choice(chosen_options)
+                else:
+                    exercise_choice = random.choice(list(options.values())[0])
+                schedule[day_choice].append(exercise_choice)
+                break
+            print("Invalid input, please choose a valid day.")
+    
+    # Print workout schedule
+    print("Here's your workout schedule:")
+    for day, exercises in schedule.items():
+        if exercises:
+            print(f"{day}: {', '.join(exercises)}")
+        else:
+            print(f"{day}: Rest")
+        time.sleep(0.5)  # Add a small delay for better readability
 
 
-weekly_schedule()
-
+workout_schedule()
